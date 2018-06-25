@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./Velocity.js"></script>
+    <link rel="stylesheet" type="text/css" href="./animate.css">
+    <style>
+        /* .fade-enter,.fade-leave-to{
+            opacity: 0;
+        } */
+        /* 利用CSS3 keyframes定义一个放大的动画 */
+        /* @keyframes l-scale {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        } */
+        /* .fade-enter,.fade-leave-to {
+            opacity: 0;
+        }
+        .fade-enter-active,.fade-leave-active {
+            transition: opacity 3s;
+        } */
+        .moreEl-enter,.moreEl-leave-to {
+            opacity: 0;
+        }
+        .moreEl-enter-active,.moreEl-leave-active {
+            transition: opacity 1s;
+        }
+        .listEL-enter,.listEL-leave-to {
+            opacity: 0;
+        }
+        .listEL-enter-active,.listEL-leave-active {
+            transition: opacity 3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- 组件之间的切换效果 -->
+        <transition mode="out-in" name="moreEl">
+            <component :is="type"></component>
+        </transition>
+        <button @click='handleBtnClick' class="animated wobble">change</button>
+
+        <!-- 作用域插槽 -->
+        <child>
+            <template slot-scope='props'>
+                <li>{{props.item}}</li>
+            </template>
+        </child>
+
+        <!-- 渐隐渐现的动画效果 -->
+        <!-- transition会为包裹的标签添加v-enter,v-enter-active的类名 -->
+        <transition
+            name="fade"
+            appear
+            enter-active-class="animated flash fade-enter-active"
+            leave-active-class="animated bounceIn fade-leave-active"
+            appear-active-class="animated rotateOut"
+        >
+            <div v-if='show'>我们一起学Vue</div>
+        </transition>
+        <button @click='handleShow'>{{showORnot}}</button>
+        <!-- js控制动画效果 -->
+        <!-- 利用vue中transtion执行过程里面的挂钩 -->
+        <!-- 与之对应的有before-leave,leave,after-leave -->
+        <animation v-bind:show='show'>
+            <div>js控制的效果</div>
+        </animation>
+        
+        
+        <!-- 多个元素之间的切换效果 -->
+        <transition name="moreEl" mode="out-in">
+            <div v-if="show" key="lxb">lxb</div>
+            <div v-else key="dmd">dmd</div>
+        </transition>
+
+        <!-- 列表效果 transition-grounp -->
+        <transition-group name="listEL">
+            <div v-for="item of grounp" :key="item.id">{{item.title}}</div>  
+        </transition-group>
+        <button @click="handlBtnClick">提交</button>
+    </div>
+    <script> 
+        // 动画封装
+        Vue.component('animation',{
+            props: ['show'],
+            template: `
+                <transition 
+                    name="fadeJS"
+                    @before-enter="handleBeforeEnter"
+                    @enter="handleEnter"
+                    @after-enter="handleAfterEnter"
+                >
+                    <slot v-if="show"> 
+                        
+                    </slot>
+                </transition>
+            `,
+            methods: {
+                // el为动画包裹的标签
+                handleBeforeEnter: function(el){
+                    // el.style.color = 'red'
+                    el.style.opacity = 0.5;
+                },
+                handleEnter: function(el,done){
+                    // setTimeout(function(){
+                    //     el.style.color= 'green';
+                    // },2000);
+                    // setTimeout(() => {
+                    //     done();
+                    // }, 4000);
+                    Velocity(el,{opacity: 1}, {duration: 5000,complete: done})
+                },
+                handleAfterEnter: function(el){
+                    el.style.color = 'black'
+                    
+                }
+            }
+        })
+        Vue.component('child-one',{
+            template: '<div v-once>child-one</div>'
+        })
+        Vue.component('child-two',{
+            template: '<div v-once>child-two</div>'
+        })
+        Vue.component('child',{
+            data: function(){
+                return{
+                    list: [1,2,3,4]
+                }
+            },
+            template: `<div>
+                           <ul>
+                            <slot 
+                                v-for='item of list'
+                                v-bind:item='item'
+                            >
+                            </slot>
+                           </ul>     
+                        </div>`
+        })
+        var  vm = new Vue({
+            el: '#root',
+            data: {
+                type: 'child-one',
+                show: true ,
+                showORnot: '隐藏',
+                count: 0,
+                grounp: []
+            },
+            methods: {
+                handleBtnClick: function(){
+                    this.type = (this.type === 'child-one' ? 'child-two' : 'child-one');
+                },
+                handleShow: function(){
+                    this.show = !this.show;
+                    if(this.show){
+                        this.showORnot = '隐藏'
+                    }else{
+                        this.showORnot = '显示'
+                    }
+                },
+                // // el为动画包裹的标签
+                // handleBeforeEnter: function(el){
+                //     // el.style.color = 'red'
+                //     el.style.opacity = 0.5;
+                // },
+                // handleEnter: function(el,done){
+                //     // setTimeout(function(){
+                //     //     el.style.color= 'green';
+                //     // },2000);
+                //     // setTimeout(() => {
+                //     //     done();
+                //     // }, 4000);
+                //     Velocity(el,{opacity: 1}, {duration: 1000,complete: done})
+                // },
+                // handleAfterEnter: function(el){
+                //     el.style.color = 'black'
+                    
+                // },
+                handlBtnClick: function(){
+                    this.grounp.push({
+                        id: this.count++,
+                        title: 'hello world'
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
