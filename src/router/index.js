@@ -1,15 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// @符号指的SRC的目录
+// import HelloWorld from '@/components/HelloWorld'
+import Home from '@/pages/home/Home.vue'
 
 Vue.use(Router)
 
+// 路由配置
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Home',
+      component: Home
     }
   ]
 })
