@@ -5,11 +5,14 @@ import Vue from 'vue'
 import App from './App'
 // 路由：根据网址的不同，返回不同的内容给用户
 import router from './router'
+// 安装了fastClick包
 import fastClick from 'fastclick'
-import './assets/styles/reset.css'
-import './assets/styles/border.css'
+import 'styles/reset.css'
+import 'styles/border.css'
+import 'styles/iconfont.css'
 
 Vue.config.productionTip = false
+// 调用faskClick里面的attach方法
 fastClick.attach(document.body)
 /* eslint-disable no-new */
 new Vue({
