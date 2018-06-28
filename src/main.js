@@ -7,13 +7,17 @@ import App from './App'
 import router from './router'
 // 安装了fastClick包
 import fastClick from 'fastclick'
+// 引入vue-awesome-swiper文件
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
+import 'swiper/dist/css/swiper.css'
 
 Vue.config.productionTip = false
 // 调用faskClick里面的attach方法
 fastClick.attach(document.body)
+Vue.use(VueAwesomeSwiper /* { default global options } */)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

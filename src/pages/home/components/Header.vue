@@ -49,6 +49,5 @@ export default {
       text-align center
       .down-icon
         font-size .24rem
-        margin-left -.09rem
 
 </style>
