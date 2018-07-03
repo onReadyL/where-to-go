@@ -1,5 +1,5 @@
 <template>
-  <div class="icons">
+  <div class="icons wrapper">
     <swiper :options="swiperOption" >
       <swiper-slide v-for="(page ,index) of pages" :key="index">
         <div class="icon" v-for="item of page" :key="item.id">
@@ -9,6 +9,7 @@
           <p class="icon-desc">{{item.desc}}</p>
         </div>
       </swiper-slide>
+      <div class="swiper-pagination"  slot="pagination"></div>
      </swiper>
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
   data () {
     return {
       swiperOption: {
-
+        pagination: '.swiper-pagination',
+        loop: true
       },
       iconsList: [
         {
@@ -88,7 +90,10 @@ export default {
 <style lang="stylus" scoped>
   @import '~styles/varibles.styl'
   @import '~styles/mixins.styl'
+  .wrapper >>> .swiper-pagination-bullet-active
+    background-color #fff
   .icons
+    margin-top .1rem
     overflow hidden
     height 0
     padding-bottom 50%
