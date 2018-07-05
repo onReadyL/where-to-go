@@ -4,9 +4,9 @@
     热销推荐
     </div>
     <ul>
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of recommend" :key="item.id">
         <div class="item-img-wrapper">
-          <img class="item-img" :src="item.imgURL">
+          <img class="item-img" :src="item.imgUrl">
         </div>
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -21,65 +21,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [
-        {
-          id: '0001',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0002',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0003',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0004',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0005',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0006',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0007',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0008',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        },
-        {
-          id: '0009',
-          imgURL: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_200x200_63285bd9.jpg',
-          title: '成都海昌极地海洋公园',
-          desc: '成都海昌极地海洋公园....'
-        }
-      ]
-    }
+  props: {
+    recommend: Array
   }
 }
 </script>
