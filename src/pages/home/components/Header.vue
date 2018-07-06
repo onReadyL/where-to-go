@@ -7,10 +7,12 @@
       <span class="iconfont">&#xe632;</span>
       输入景点
     </div>
-    <div class="header-right">
+    <router-link to="/city">
+      <div class="header-right">
       {{this.city}}
       <span class="iconfont down-icon">&#xe65e;</span>
-    </div>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -50,6 +52,7 @@ export default {
       width 1.24rem
       float right
       text-align center
+      color #fff
       .down-icon
         font-size .24rem
 

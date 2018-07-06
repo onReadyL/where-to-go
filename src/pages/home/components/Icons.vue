@@ -49,8 +49,6 @@ export default {
 <style lang="stylus" scoped>
   @import '~styles/varibles.styl'
   @import '~styles/mixins.styl'
-  .wrapper >>> .swiper-pagination-bullet-active
-    background-color #fff
   .icons
     margin-top .1rem
     overflow hidden
