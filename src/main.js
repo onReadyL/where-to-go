@@ -9,6 +9,8 @@ import router from './router'
 import fastClick from 'fastclick'
 // 引入vue-awesome-swiper文件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+// 引入vuex文件
+import store from './store/index.js'
 import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
@@ -22,6 +24,7 @@ Vue.use(VueAwesomeSwiper /* { default global options } */)
 new Vue({
   el: '#app',
   router: router,
+  store: store,
   components: { App: App },
   template: '<App/>'
 })
