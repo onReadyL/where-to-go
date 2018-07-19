@@ -49,7 +49,7 @@ export default {
     window.addEventListener('scroll', this.handleScroll)
   },
   // 对全局事件解绑
-  deactivated() {
+  deactivated () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
@@ -70,6 +70,7 @@ export default {
     .header-abs-back-icon
       color #ffffff
   .header-fixed
+    z-index 2
     position fixed
     left 0
     top 0
