@@ -10,12 +10,9 @@
         <div class="banner-title">成都海昌极地海洋公园(AAAA景区)</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe600;</span>
-          33
+          {{this.imgs.length}}
         </div>
       </div>
-      <router-link to="/">
-        <div class="iconfont back-icon">&#xe624;</div>
-      </router-link>
     </div>
     <common-gallary
       v-show="showPicS"
@@ -63,6 +60,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  @import '~styles/mixins.styl'
   .banner
     overflow hidden
     position relative
@@ -83,6 +81,7 @@ export default {
         flex 1
         font-size .32rem
         padding 0 .2rem
+        ellipsis()
       .banner-number
         height .32ren
         line-height .32rem
@@ -92,14 +91,4 @@ export default {
         font-size .24rem
         .banner-icon
           font-size .24rem
-    .back-icon
-      position absolute
-      height .86rem
-      line-height .86rem
-      left 0
-      top 0
-      width .64rem
-      text-align center
-      font-size .4rem
-      color #fff
 </style>
