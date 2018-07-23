@@ -2,8 +2,8 @@
   <div class="container" @click="hidePicS">
     <div class="wrapper">
       <swiper :options="swiperOption">
-        <swiper-slide v-for="item of imgs" :key="item.id">
-          <img class="gallary-img" :src="item.imgUrl" />
+        <swiper-slide v-for="(item,index) of imgs" :key="index">
+          <img class="gallary-img" :src="item" />
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>

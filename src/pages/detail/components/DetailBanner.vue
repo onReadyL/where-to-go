@@ -3,21 +3,21 @@
     <div class="banner">
       <img
         class="banner-img"
-        src="//img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_600x330_3b0fdac5.jpg"
+        :src="this.bannerImg"
         @click="showPicL"
       />
       <div class="banner-info">
-        <div class="banner-title">成都海昌极地海洋公园(AAAA景区)</div>
+        <div class="banner-title">{{this.sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe600;</span>
-          {{this.imgs.length}}
+          {{this.gallaryImgs.length}}
         </div>
       </div>
     </div>
     <common-gallary
       v-show="showPicS"
       @hide="hidePics"
-      :imgs="imgs"
+      :imgs="gallaryImgs"
     ></common-gallary>
   </div>
 </template>
@@ -26,23 +26,14 @@
 import CommonGallary from 'common/gallary/Gallary.vue'
 export default {
   name: 'DetailBanner',
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
+  },
   data () {
     return {
-      showPicS: false,
-      imgs: [
-        {
-          id: '0001',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/1612/1d/1d9a740c1f9e0efaa3.img.jpg_350x240_71887875.jpg'
-        },
-        {
-          id: '0002',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/1612/c1/c14c2639b55cf054a3.img.jpg_350x240_b7449c07.jpg'
-        },
-        {
-          id: '0003',
-          imgUrl: 'http://img1.qunarzz.com/sight/p0/1612/2b/2b4d54c3260ba4b2a3.img.jpg_350x240_a3a29bf5.jpg'
-        }
-      ]
+      showPicS: false
     }
   },
   components: {
