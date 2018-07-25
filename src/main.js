@@ -9,6 +9,8 @@ import router from './router'
 import fastClick from 'fastclick'
 // 引入vue-awesome-swiper文件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+// 引入babel-polyfill
+import 'babel-polyfill'
 // 引入vuex文件
 import store from './store/index.js'
 import 'styles/reset.css'

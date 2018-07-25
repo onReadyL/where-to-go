@@ -68,15 +68,15 @@ export default {
   mounted () {
     const wrapper = document.querySelector('.wrapper')
     this.scroll = new BScroll(wrapper, {
-       click: true
+      click: true
     })
   },
   activated () {
     const wrapper = document.querySelector('.wrapper')
     this.scroll = new BScroll(wrapper, {
-       click: true
+      click: true
     })
-  },
+  }
 }
 </script>
 

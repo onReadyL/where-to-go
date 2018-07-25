@@ -70,7 +70,7 @@ export default {
   },
   mounted () {
     this.scroll = new Bscroll(this.$refs.search, {
-       click: true
+      click: true
     })
   }
 }
