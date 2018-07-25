@@ -5,7 +5,7 @@
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe632;</span>
-      输入景点
+      <input type="text" class="header-input-btn" placeholder="输入景点" v-model="headerInput">
     </div>
     <router-link to="/city">
       <div class="header-right">
@@ -18,7 +18,15 @@
 
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  data () {
+    return {
+      headerInput: ''
+    }
+  },
+  activated () {
+    this.headerInput = ''
+  }
 }
 </script>
 
@@ -36,6 +44,7 @@ export default {
         text-align center
         font-size .4rem
     .header-input
+      overflow hidden
       flex: 1
       height .64rem
       line-height .64rem
@@ -45,6 +54,8 @@ export default {
       background #ffffff
       border-radius .1rem
       color #ccc
+      .header-input-btn
+        font-size 16px
     .header-right
       min-width 1.04rem
       padding 0 .1rem

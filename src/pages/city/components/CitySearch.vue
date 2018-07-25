@@ -35,6 +35,7 @@ export default {
     handleChangeCity (city) {
       this.$store.dispatch('changeCity', city)
       this.$router.push('./')
+      this.keyword = ''
     }
   },
   computed: {
@@ -68,7 +69,9 @@ export default {
     }
   },
   mounted () {
-    this.scroll = new Bscroll(this.$refs.search)
+    this.scroll = new Bscroll(this.$refs.search, {
+       click: true
+    })
   }
 }
 </script>
