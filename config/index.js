@@ -58,6 +58,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
+    // 服务器文件夹，当前为根目录
     assetsPublicPath: '/',
 
     /**
