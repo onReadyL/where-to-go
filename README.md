@@ -33,6 +33,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     Opera Mobile 11.5及以上版本
     Android 2以来的Android浏览器
     PlayBook OS 1及以上版本
+
+随后在main.js中加入：
+
 import FastClick from 'fastclick'
 
 FastClick.attach(document.body);
