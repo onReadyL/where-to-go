@@ -22,23 +22,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ---------------------------------
  处理移动端click事件300毫秒延迟
- 
+
  npm install fastclick --save
 
 兼容性：
 
-    iOS 3及更高版本的移动Safari 
-    iOS 5及更高版本的Chrome 
-    Android上的Chrome（ICS） 
-    Opera Mobile 11.5及以上版本 
-    Android 2以来的Android浏览器 
-    PlayBook OS 1及以上版本 
-
-随后在main.js中加入：
-
-import FastClick from 'fastclick' 
+    iOS 3及更高版本的移动Safari
+    iOS 5及更高版本的Chrome
+    Android上的Chrome（ICS）
+    Opera Mobile 11.5及以上版本
+    Android 2以来的Android浏览器
+    PlayBook OS 1及以上版本
+import FastClick from 'fastclick'
 
 FastClick.attach(document.body);
-
------------------------------
-
