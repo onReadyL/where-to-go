@@ -32,6 +32,7 @@ export default {
       swiperOption: {
         pagination: '.swiper-pagination',
         paginationType: 'fraction',
+        // 自我刷新
         observeParents: true,
         observer: true,
         loop: true
