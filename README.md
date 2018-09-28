@@ -84,3 +84,7 @@ touchstart.prevent
 npm install babel-polyfill --save
 main.js:
     import 'babel-polyfill'
+
+---------------------------------
+搞不定在线演示！！！数据也没有传上来
+折腾过虚拟主机！
