@@ -2,7 +2,7 @@ export default {
   nowChangeCity (state, city) {
     state.city = city
     try {
-      localStorage.city = city
+      sessionStorage.setItem('city', city)
     } catch (error) {}
   }
 }
