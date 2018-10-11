@@ -22,6 +22,11 @@ export default new Router({
       path: '/detail/:id',
       name: 'Detail',
       component: () => import('@/pages/detail/Detail.vue')
+    },
+    {
+      path: '/search/:id',
+      name: 'Search',
+      component: () => import('@/pages/search/Search.vue')
     }
   ],
   // 通过路由跳转之后回到顶部

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <!-- 路由被加载后放入内存中 -->
     <keep-alive>
       <!-- 显示当前 路由地址 对应的内容 -->
@@ -14,6 +14,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="stylus" >
+.app
+  height 100%
 </style>

@@ -1,8 +1,8 @@
 // 避免浏览器禁用了本地储存
-let defaultCity = '成都'
+let defaultCity = '北京'
 try {
-  if (sessionStorage.getItem('city')) {
-    defaultCity = sessionStorage.getItem('city')
+  if (localStorage.getItem('city')) {
+    defaultCity = localStorage.getItem('city')
   }
 } catch (error) {}
 

@@ -4,8 +4,12 @@
       <div class="iconfont back-icon">&#xe624;</div>
     </div>
     <div class="header-input">
-      <span class="iconfont">&#xe632;</span>
-      <input type="text" class="header-input-btn" placeholder="输入景点" v-model="headerInput">
+      <router-link
+        :to="'/search/' + this.$store.state.city"
+      >
+        <span class="iconfont">&#xe632;</span>
+        <input type="text" class="header-input-btn" placeholder="输入景点" v-model="headerInput">
+      </router-link>
     </div>
     <router-link to="/city">
       <div class="header-right">
