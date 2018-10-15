@@ -78,6 +78,7 @@ export default {
     top 1.58rem
     bottom 0
     width .4rem
+    z-index 2
     .letter-list-item
       line-height .4rem
       text-align center

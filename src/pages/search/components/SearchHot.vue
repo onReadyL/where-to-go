@@ -1,16 +1,20 @@
 <template>
   <div  v-show="isShow" class="search-hot-main">
     <!-- 历史搜索 -->
-    <div>
+    <div v-show="transferArray.length">
       <div class="search-history show">
         <span class="search-history-title show">搜索历史</span>
         <div class="search-history-delete-wrapper show">
           <span class="iconfont show">&#xe601;</span>
-          <span class="search-history-delete show">清除</span>
+          <span class="search-history-delete show" @click="deleteSearchHistory">清除</span>
         </div>
       </div>
-      <div>
-        content
+      <div class="search-history-items-wrapper show">
+        <a
+          v-for="(item, index) in searchHistoryArray" :key="index"
+          :href="item.href"
+          class="search-history-item"
+        >{{item.name}}</a>
       </div>
     </div>
     <!-- 热门搜索 -->
@@ -44,10 +48,10 @@
           </div>
         </div>
         <div class="recommend-cities-items show">
-          <a href="#" class="recommend-cities-item">绵阳</a>
-          <a href="#" class="recommend-cities-item">彭州市</a>
-          <a href="#" class="recommend-cities-item">重庆</a>
-          <a href="#" class="recommend-cities-item">邛崃市</a>
+          <a href="#" class="recommend-cities-item" @click="joinToHistory">绵阳</a>
+          <a href="#" class="recommend-cities-item" @click="joinToHistory">彭州市</a>
+          <a href="#" class="recommend-cities-item" @click="joinToHistory">重庆</a>
+          <a href="#" class="recommend-cities-item" @click="joinToHistory">邛崃市</a>
         </div>
       </div>
     </div>
@@ -66,18 +70,45 @@ export default {
   },
   data () {
     return {
-      isShow: false
+      isShow: false,
+      transferArray: []
     }
   },
   methods: {
-    joinToHistory () {
-      console.log('1')
+    joinToHistory (e) {
+      let a = []
+      this.transferArray.forEach(element => {
+        a.push(element.name)
+      })
+      if (a.indexOf(e.target.innerText) === -1) {
+        this.transferArray.unshift(
+          {
+            hraf: '#',
+            name: e.target.innerText
+          }
+        )
+      }
+    },
+    deleteSearchHistory () {
+      this.transferArray.splice(0, this.transferArray.length)
+    }
+  },
+  computed: {
+    searchHistoryArray () {
+      let searchHistoryArray = []
+      searchHistoryArray = this.transferArray
+      if (searchHistoryArray.length > 8) {
+        searchHistoryArray.pop()
+      }
+      return searchHistoryArray
     }
   },
   watch: {
     show: function () {
       this.isShow = this.show
     }
+  },
+  activated () {
   }
 }
 </script>
@@ -101,6 +132,32 @@ export default {
         color #00afc7
         padding 0 .2rem
         cursor:pointer
+    .search-history-items-wrapper
+      width 100%
+      height 1.24rem
+      line-height 1.24rem
+      padding .1rem 0
+      white-space nowrap
+      overflow-x scroll
+      background-color #ffffff
+      border-bottom 1px solid #dce5e7
+      .search-history-item
+        display inline-block
+        height .6rem
+        line-height .6rem
+        max-width 1.5rem
+        overflow hidden
+        text-overflow ellipsis
+        font-size .26rem
+        color #333
+        background-color #ffffff
+        padding 0 .15rem
+        text-align center
+        margin-top .25 rem
+        margin-left .2rem
+        border 1px solid #c9cccd
+        border-radius 3px
+        white-space nowrap
     .search-hot
       width 100%
       height .64rem
