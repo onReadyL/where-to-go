@@ -22,7 +22,7 @@
       <span class="search-hot-title show">热门搜索</span>
       <div class="search-hot-change-wrapper show">
         <span class="iconfont show">&#xe6aa;</span>
-        <span class="search-hot-change show" >换一批</span>
+        <span class="search-hot-change show" @click="changeArray">换一批</span>
       </div>
     </div>
     <div class="recommend-spots-cities show">
@@ -33,12 +33,13 @@
           </div>
         </div>
         <div class="recommend-spots-items show">
-          <a href="#" class="recommend-spots-item" @click="joinToHistory">金秋旅行嘉年华</a>
-          <a href="#" class="recommend-spots-item" @click="joinToHistory">1元门票</a>
-          <a href="#" class="recommend-spots-item" @click="joinToHistory">清新黔江</a>
-          <a href="#" class="recommend-spots-item" @click="joinToHistory">全国网红景点</a>
-          <a href="#" class="recommend-spots-item" @click="joinToHistory">都江堰</a>
-          <a href="#" class="recommend-spots-item" @click="joinToHistory">成都武侯祠</a>
+          <a
+          v-for="(item,index) of recommendSpotsitems"
+          :href="item.href"
+          :key="index"
+          class="recommend-spots-item"
+          @click="joinToHistory"
+        >{{item.name}}</a>
         </div>
       </div>
       <div class="recommend-cities-wrapper show">
@@ -71,7 +72,77 @@ export default {
   data () {
     return {
       isShow: false,
-      transferArray: []
+      transferArray: [],
+      recommendSpotsArray: [
+        {
+          hraf: '#',
+          name: '金秋旅行嘉年华'
+        },
+        {
+          hraf: '#',
+          name: '国色天乡·童话世界'
+        },
+        {
+          hraf: '#',
+          name: '三星堆'
+        },
+        {
+          hraf: '#',
+          name: '碧峰峡'
+        },
+        {
+          hraf: '#',
+          name: '南湖梦幻岛'
+        },
+        {
+          hraf: '#',
+          name: '1元门票'
+        },
+        {
+          hraf: '#',
+          name: '成都武侯祠'
+        },
+        {
+          hraf: '#',
+          name: '都江堰'
+        },
+        {
+          hraf: '#',
+          name: '清新黔江'
+        },
+        {
+          hraf: '#',
+          name: '漫花庄园'
+        },
+        {
+          hraf: '#',
+          name: '峨眉山'
+        },
+        {
+          hraf: '#',
+          name: '西岭雪山'
+        },
+        {
+          hraf: '#',
+          name: '乐山大佛'
+        },
+        {
+          hraf: '#',
+          name: '西岭雪山滑雪场'
+        },
+        {
+          hraf: '#',
+          name: '成都欢乐谷'
+        },
+        {
+          hraf: '#',
+          name: '都江堰熊猫乐园'
+        },
+        {
+          hraf: '#',
+          name: '国色天乡·陆地乐园'
+        }
+      ]
     }
   },
   methods: {
@@ -87,28 +158,50 @@ export default {
             name: e.target.innerText
           }
         )
+        // 转化数组为字符串保存在storage中
+        let str = JSON.stringify(this.transferArray)
+        let storage = window.sessionStorage
+        storage.setItem('searchHistory', str)
       }
     },
     deleteSearchHistory () {
+      let storage = window.sessionStorage
+      storage.removeItem('searchHistory')
       this.transferArray.splice(0, this.transferArray.length)
+    },
+    changeArray () {
+      let arr = this.recommendSpotsArray
+      arr.sort(function () {
+        return (0.5 - Math.random())
+      })
     }
   },
   computed: {
     searchHistoryArray () {
       let searchHistoryArray = []
-      searchHistoryArray = this.transferArray
+      let this_ = this
+      let storage = window.sessionStorage
+      // storage里面是字符串转化成数组
+      let options = JSON.parse(storage.getItem('searchHistory'))
+      if (options) {
+        this_.transferArray = options
+      }
+      searchHistoryArray = this_.transferArray
       if (searchHistoryArray.length > 8) {
         searchHistoryArray.pop()
       }
       return searchHistoryArray
+    },
+    recommendSpotsitems () {
+      let recommendSpotsitems = []
+      recommendSpotsitems = this.recommendSpotsArray
+      return recommendSpotsitems
     }
   },
   watch: {
     show: function () {
       this.isShow = this.show
     }
-  },
-  activated () {
   }
 }
 </script>
