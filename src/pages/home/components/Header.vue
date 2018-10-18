@@ -13,7 +13,7 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-      {{this.$store.state.city}}
+      {{this.$store.state.city | handleCity}}
       <span class="iconfont down-icon">&#xe65e;</span>
       </div>
     </router-link>
@@ -21,11 +21,36 @@
 </template>
 
 <script>
+import BMap from 'BMap'
 export default {
   name: 'HomeHeader',
   data () {
     return {
       headerInput: ''
+    }
+  },
+  beforeMount () {
+    var this_ = this
+    if (!localStorage.getItem('currentCity')) {
+      let myCity = new BMap.LocalCity()
+      myCity.get((result) => {
+        this_.$store.dispatch('changeCity', result.name)
+      })
+      // var geolocation = new BMap.Geolocation()
+      // geolocation.getCurrentPosition(function (r) {
+      //   var status = 'BMAP_STATUS_SUCCESS'
+      //   if (this.getStatus() === status) {
+      //     let currentLon = r.point.lng
+      //     let currentLat = r.point.lat
+      //     let pt = new BMap.Point(currentLon, currentLat)
+      //     let geoc = new BMap.Geocoder()
+      //     geoc.getLocation(pt, function (rs) {
+      //       let addComp = rs.addressComponents
+      //       let currentCity = addComp.city
+      //       localStorage.setItem('currentCity', currentCity)
+      //     })
+      //   }
+      // })
     }
   },
   activated () {

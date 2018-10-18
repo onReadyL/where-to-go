@@ -17,6 +17,9 @@ import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
 import 'swiper/dist/css/swiper.css'
+// 引入filter
+import filters from './filters/index.js'
+Object.keys(filters).forEach(k => Vue.filter(k, filters[k]))
 
 Vue.config.productionTip = false
 // 调用faskClick里面的attach方法
