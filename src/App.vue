@@ -9,8 +9,29 @@
 </template>
 
 <script>
+// import BMap from 'BMap'
 export default {
   name: 'App'
+  // ,
+  // mounted () {
+  //   if (!localStorage.getItem('currentCity')) {
+  //     var geolocation = new BMap.Geolocation()
+  //     geolocation.getCurrentPosition(function (r) {
+  //       var status = 'BMAP_STATUS_SUCCESS'
+  //       if (this.getStatus() === status) {
+  //         let currentLon = r.point.lng
+  //         let currentLat = r.point.lat
+  //         let pt = new BMap.Point(currentLon, currentLat)
+  //         let geoc = new BMap.Geocoder()
+  //         geoc.getLocation(pt, function (rs) {
+  //           let addComp = rs.addressComponents
+  //           let currentCity = addComp.city
+  //           localStorage.setItem('currentCity', currentCity)
+  //         })
+  //       }
+  //     })
+  //   }
+  // }
 }
 </script>
 
