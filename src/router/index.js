@@ -6,22 +6,27 @@ Vue.use(Router)
 
 // 路由配置
 // 设置异步加载
+// import函数返回一个promise
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
       name: 'Home',
-      component: () => import('@/pages/home/Home.vue')
+      component: (resolve) => { require(['@/pages/home/Home.vue'], resolve) }
+      // () => import('@/pages/home/Home.vue')
     },
     {
       path: '/city',
       name: 'City',
-      component: () => import('@/pages/city/City.vue')
+      component: (resolve) => { require(['@/pages/city/City.vue'], resolve) }
+      // () => import('@/pages/city/City.vue')
     },
     {
       path: '/detail/:id',
       name: 'Detail',
-      component: () => import('@/pages/detail/Detail.vue')
+      component: (resolve) => { require(['@/pages/detail/Detail.vue'], resolve) }
+      // () => import('@/pages/detail/Detail.vue')
     },
     {
       path: '/search/:id',
